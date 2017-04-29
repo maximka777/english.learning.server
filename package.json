@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/maximka777/english.learning.server#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "bluebird": "^3.5.0",
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
   }
 }
