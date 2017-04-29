@@ -1,10 +1,18 @@
-const express = require('express');
-let app = express();
+const app = require('./app');
+const http = require('http');
+const connectToDatabase = require('./database/index').connectToDatabase;
 
-app.get('/', (req, resp) => {
-	resp.send('<h1>English Learning</h1>');
+const UserService = require('./services/users');
+
+const port = '3000';
+app.set('port', port);
+
+const server = http.createServer(app);
+server.listen(port);
+
+server.on('listening', () => {
+    console.log(`Listening on ${port}`);
 });
 
-app.listen(3000, () => {
-	console.log('Started');
-});
+
+UserService.getAll();
