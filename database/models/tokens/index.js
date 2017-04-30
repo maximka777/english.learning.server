@@ -12,7 +12,8 @@ const Token = sequelize.define('token', {
     },
 }, {
     freezeTableName: true,
-    timestamps: false
+    createdAt: false,
+    updatedAt: false
 });
 
 Token.belongsTo(User, {primaryKey: 'userId'});
