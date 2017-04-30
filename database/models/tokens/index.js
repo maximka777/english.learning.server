@@ -16,8 +16,6 @@ const Token = sequelize.define('token', {
     updatedAt: false
 });
 
-Token.belongsTo(User, {primaryKey: 'userId'});
-
-console.log('User token is defined');
+Token.belongsTo(User);
 
 module.exports = Token;
