@@ -1,5 +1,6 @@
 const sequelize = require('../../index');
 const Sequelize = require('sequelize');
+const TestResult  = require('../testResults');
 
 const User = sequelize.define('user', {
     id: {
@@ -23,5 +24,7 @@ const User = sequelize.define('user', {
     createdAt: false,
     updatedAt: false,
 });
+
+User.hasMany(TestResult, { foreignKey: 'user_id' });
 
 module.exports = User;
