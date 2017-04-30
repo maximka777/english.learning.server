@@ -6,7 +6,8 @@ const WordTopic = sequelize.define('word_topic', {
     id: {
         type: Sequelize.INTEGER,
         field: 'word_topic_id',
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     name: {
         type: Sequelize.TEXT

@@ -18,7 +18,11 @@
   "homepage": "https://github.com/maximka777/english.learning.server#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "js-md5": "^0.4.2",
+    "jsonwebtoken": "^7.4.0",
+    "moment": "^2.18.1",
     "mysql": "^2.13.0",
     "sequelize": "^3.30.4"
   }

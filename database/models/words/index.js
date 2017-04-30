@@ -5,7 +5,8 @@ const Word = sequelize.define('word', {
     id: {
         type: Sequelize.INTEGER,
         field: 'word_id',
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     english: {
         type: Sequelize.STRING

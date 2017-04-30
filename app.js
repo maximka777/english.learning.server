@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 let app = express();
 
 app.use(function(req, res, next) {
@@ -12,6 +13,9 @@ app.use(function(req, res, next) {
 
     next();
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const routes = require('./routes');
 app.use(routes);

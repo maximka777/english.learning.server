@@ -7,6 +7,7 @@ const TestTopic = sequelize.define('test_topic', {
         type: Sequelize.INTEGER,
         field: 'test_topic_id',
         primaryKey: true,
+        autoIncrement: true,
     },
     name: {
         type: Sequelize.STRING,

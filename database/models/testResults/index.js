@@ -6,7 +6,8 @@ const TestResult = sequelize.define('test_result', {
     id: {
         type: Sequelize.INTEGER,
         field: 'test_result_id',
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     correctCount: {
         type: Sequelize.INTEGER,

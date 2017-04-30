@@ -6,7 +6,8 @@ const TestQuestion = sequelize.define('test_question', {
     id: {
         type: Sequelize.INTEGER,
         field: 'question_id',
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     questionText: {
         type: Sequelize.TEXT,

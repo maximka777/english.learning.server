@@ -5,7 +5,8 @@ const QuestionAnswer = sequelize.define('question_answer', {
     id: {
         type: Sequelize.INTEGER,
         field: 'answer_id',
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     answerText: {
         type: Sequelize.TEXT,

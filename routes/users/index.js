@@ -12,4 +12,13 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.post('/', (req, res, next) => {
+    usersService.create(req.body)
+        .then(data => {
+            res.json({
+                data: data
+            });
+        });
+});
+
 module.exports = router;

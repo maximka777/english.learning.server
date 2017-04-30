@@ -7,6 +7,7 @@ const User = sequelize.define('user', {
         type: Sequelize.INTEGER,
         field: 'user_id',
         primaryKey: true,
+        autoIncrement: true,
     },
     username: {
         type: Sequelize.STRING,
@@ -18,6 +19,7 @@ const User = sequelize.define('user', {
     isAdmin: {
         type: Sequelize.BOOLEAN,
         field: 'is_admin',
+        defaultValue: false,
     },
 }, {
     freezeTableName: true,

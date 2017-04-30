@@ -7,6 +7,7 @@ const Test = sequelize.define('test', {
         type: Sequelize.INTEGER,
         field: 'test_id',
         primaryKey: true,
+        autoIncrement: true,
     },
     name: {
         type: Sequelize.STRING,
