@@ -20,8 +20,8 @@ const User = sequelize.define('user', {
     },
 }, {
     freezeTableName: true,
+    createdAt: false,
+    updatedAt: false,
 });
-
-console.log('User is defined');
 
 module.exports = User;
