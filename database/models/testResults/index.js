@@ -1,5 +1,6 @@
 const sequelize = require('../../index');
 const Sequelize = require('sequelize');
+const Test = require('../tests');
 
 const TestResult = sequelize.define('test_result', {
     id: {
@@ -20,5 +21,7 @@ const TestResult = sequelize.define('test_result', {
     createdAt: false,
     updatedAt: false
 });
+
+TestResult.belongsTo(Test);
 
 module.exports = TestResult;
