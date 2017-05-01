@@ -8,24 +8,27 @@ function getAll() {
 }
 
 function create(user) {
-    return User.findOne({ where: { username: user.username } })
-        .then(foundUser => {
-            if(!foundUser) {
-                user.passwordHash = md5(user.password);
-                User.create(user)
-                    .then((userData) => {
-                        const jwtToken = jwt.sign({ data: user.username }, 'secret');
-                        Token.create({ id: data.dataValues.id, value: jwtToken })
-                            .then(tokenData => {
-                                tokenData.getUser()
-                                    .then(user => {
-                                        console.log(user);
-                                    });
-                            });
+    return new Promise((resolve, reject) => {
+        User.findOne({ where: { username: user.username } })
+            .then(foundUser => {
+                if(!foundUser) {
+                    user.passwordHash = md5(user.password);
+                    User.create(user)
+                        .then((userData) => {
+                            const newUser = userData.get();
+                            const jwtToken = jwt.sign({ data: user.username }, 'secret');
+                            Token.create({ id: newUser.id, value: jwtToken })
+                                .then(tokenData => {
+                                    const newToken = tokenData.get();
+                                    resolve(newToken.value);
+                                });
 
-                    });
-            }
-        });
+                        });
+                } else {
+                    reject({ status: 400, message: 'User is exist'});
+                }
+            });
+    });
 }
 
 module.exports = {

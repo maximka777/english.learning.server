@@ -18,6 +18,12 @@ router.post('/', (req, res, next) => {
             res.json({
                 data: data
             });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
         });
 });
 
