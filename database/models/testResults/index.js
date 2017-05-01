@@ -23,6 +23,6 @@ const TestResult = sequelize.define('test_result', {
     updatedAt: false
 });
 
-TestResult.belongsTo(Test);
+TestResult.belongsTo(Test, { foreignKey: 'test_id' });
 
 module.exports = TestResult;

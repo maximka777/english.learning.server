@@ -16,6 +16,10 @@ const QuestionAnswer = sequelize.define('question_answer', {
         type: Sequelize.BOOLEAN,
         field: 'is_correct',
         defaultValue: false
+    },
+    questionId: {
+        type: Sequelize.INTEGER,
+        field: 'question_id',
     }
 }, {
     freezeTableName: true,

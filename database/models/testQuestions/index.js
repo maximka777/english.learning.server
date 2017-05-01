@@ -12,6 +12,10 @@ const TestQuestion = sequelize.define('test_question', {
     questionText: {
         type: Sequelize.TEXT,
         field: 'question_text'
+    },
+    testId: {
+        type: Sequelize.INTEGER,
+        field: 'test_id',
     }
 }, {
     freezeTableName: true,

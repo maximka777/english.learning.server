@@ -15,6 +15,7 @@ const TestTopic = sequelize.define('test_topic', {
     complexity: {
         type: Sequelize.INTEGER,
         field: 'complexity_level',
+        defaultValue: 1,
         validate: {
             max: 10,
             min: 1,

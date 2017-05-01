@@ -12,6 +12,10 @@ const Test = sequelize.define('test', {
     name: {
         type: Sequelize.STRING,
     },
+    topicId: {
+        type: Sequelize.INTEGER,
+        field: 'test_topic_id',
+    },
 }, {
     freezeTableName: true,
     createdAt: false,
