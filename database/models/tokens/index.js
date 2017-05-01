@@ -15,7 +15,7 @@ const Token = sequelize.define('token', {
     isValid: {
         type: Sequelize.BOOLEAN,
         field: 'is_valid',
-        defaultValue: true,
+        defaultValue: false,
     },
 }, {
     freezeTableName: true,
@@ -23,6 +23,6 @@ const Token = sequelize.define('token', {
     updatedAt: false
 });
 
-Token.belongsTo(User);
+Token.belongsTo(User, { foreignKey: 'user_id' });
 
 module.exports = Token;

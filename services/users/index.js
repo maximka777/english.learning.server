@@ -16,11 +16,9 @@ function create(user) {
                     User.create(user)
                         .then((userData) => {
                             const newUser = userData.get();
-                            const jwtToken = jwt.sign({ data: user.username }, 'secret');
-                            Token.create({ id: newUser.id, value: jwtToken })
+                            Token.create({ id: newUser.id, value: jwt.sign({ data: user.username }, 'secret') })
                                 .then(tokenData => {
-                                    const newToken = tokenData.get();
-                                    resolve(newToken.value);
+                                    resolve({});
                                 });
 
                         });
