@@ -8,5 +8,7 @@ router.use('/auth', require('./auth'));
 router.use('/users', require('./users'));
 router.use('/testTopics', require('./testTopics'));
 router.use('/tests', require('./tests'));
+router.use('/words', require('./words'));
+router.use('/word_topics', require('./wordTopics'));
 
 module.exports = router;

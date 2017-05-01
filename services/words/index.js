@@ -4,6 +4,10 @@ function getAll(){
     return Word.findAll();
 }
 
+function getAllByTopicId(topicId) {
+    return Word.findAll({where: {word_topic_id: topicId}});
+}
+
 function create(word) {
     return new Promise((resolve, reject) => {
         Word.create(word)
@@ -18,5 +22,6 @@ function create(word) {
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    getAllByTopicId
 }

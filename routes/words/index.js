@@ -7,17 +7,32 @@ router.get('/', (req, res, next) => {
     wordsService.getAll()
         .then(data => {
             res.json({
-                words: data
-            })
-        })
+                data: data
+            });
+        });
+});
+
+router.get('/:topicId', (req, res, next) => {
+   wordsService.getAllByTopicId(req.params.topicId)
+       .then(data => {
+           res.json({
+               data: data
+           })
+       })
 });
 
 router.post('/', (req, res, next) => {
-    wordsService.create(req.word)
+    wordsService.create(req.body.word)
         .then(data => {
             res.json({
-                word: data
-            })
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
         })
 });
 
