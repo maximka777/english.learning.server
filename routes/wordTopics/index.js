@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-   wordTopicsService.create({name: req.body.name})
+   wordTopicsService.create(req.body)
        .then(data => {
            res.json({
                data: data
