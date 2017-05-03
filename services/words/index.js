@@ -5,7 +5,7 @@ function getAll(){
 }
 
 function getAllByTopicId(topicId) {
-    return Word.findAll({where: {word_topic_id: topicId}});
+    return Word.findAll({where: {topicId: topicId}});
 }
 
 function create(word) {
@@ -20,8 +20,21 @@ function create(word) {
     });
 }
 
+function remove(id) {
+    return new Promise((resolve, reject) => {
+        Word.findOne({ where: { id } })
+            .then(word => {
+                word.destroy()
+                    .then(() => {
+                        resolve({});
+                    });
+            });
+    });
+}
+
 module.exports = {
     create,
     getAll,
-    getAllByTopicId
+    getAllByTopicId,
+    remove
 }

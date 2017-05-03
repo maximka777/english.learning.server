@@ -13,7 +13,11 @@ const Word = sequelize.define('word', {
     },
     russian: {
         type:Sequelize.STRING
-    }
+    },
+    topicId: {
+        type: Sequelize.INTEGER,
+        field: 'word_topic_id',
+    },
 }, {
     freezeTableName: true,
     createdAt: false,

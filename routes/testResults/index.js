@@ -12,8 +12,8 @@ router.get('/:userId', (req, res, next) => {
         });
 });
 
-router.get('/:userId/:topicId', (req, res, next) => {
-   testResultsService.getAllByUserIdTopicId(req.params.userId, req.params.topicId)
+router.get('/:userId/:testId', (req, res, next) => {
+   testResultsService.getAllByUserIdTestId(req.params.userId, req.params.testId)
        .then(data => {
            res.json({
                data: data

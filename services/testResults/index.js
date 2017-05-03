@@ -13,15 +13,15 @@ function create(testResult) {
 }
 
 function getAllByUserId(userId) {
-    return TestResult.findAll({where: {user_id: userId}});
+    return TestResult.findAll({where: {userId: userId}});
 }
 
-function getAllByUserIdTopicId(userId, topicId) {
-    return TestResult.findAll({where: {user_id: userId, topic_id: topicId}});
+function getAllByUserIdTestId(userId, testId) {
+    return TestResult.findAll({where: {userId: userId, testId: testId}});
 }
 
 module.exports = {
     create,
     getAllByUserId,
-    getAllByUserIdTopicId
+    getAllByUserIdTestId
 }

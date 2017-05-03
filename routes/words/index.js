@@ -22,7 +22,7 @@ router.get('/:topicId', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    wordsService.create(req.body.word)
+    wordsService.create(req.body)
         .then(data => {
             res.json({
                 data: data
@@ -34,6 +34,21 @@ router.post('/', (req, res, next) => {
                 data: err.message
             });
         })
+});
+
+router.delete('/:id', (req, res, next) => {
+    wordsService.remove(req.params.id)
+        .then(data => {
+            res.json({
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
+        });
 });
 
 module.exports = router;
