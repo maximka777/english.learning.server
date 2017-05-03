@@ -16,6 +16,14 @@ const TestResult = sequelize.define('test_result', {
     passDate: {
         type: Sequelize.BIGINT,
         field: 'pass_date'
+    },
+    testId: {
+        type: Sequelize.INTEGER,
+        field: 'test_id',
+    },
+    userId: {
+        type: Sequelize.INTEGER,
+        field: 'user_id',
     }
 }, {
     freezeTableName: true,
