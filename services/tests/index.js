@@ -1,7 +1,5 @@
 const Test = require('../../database/models/tests');
 const TestTopic = require('../../database/models/testTopics');
-const TestQuestion = require('../../database/models/testQuestions');
-const QuestionAnswer = require('../../database/models/questionAnswers');
 
 function getAll() {
     return Test.findAll()
@@ -19,23 +17,7 @@ function create(test) {
                 TestTopic.findOne({where: {id: test.topicId}})
                     .then(topicResult => {
                         if(!topicResult) return reject({ status: 400, message: 'Topic doesn\'t exist' });
-                        Promise.all(test.questions.map(question => {
-                            return new Promise((resolve_, reject_) => {
-                                TestQuestion.create({questionText: question.questionText, testId: testResult.get('id')})
-                                    .then(questionResult => {
-                                        Promise.all(question.answers.map(answer => {
-                                            return new Promise((resolve__, reject__) => {
-                                                QuestionAnswer.create({answerText: answer.answerText, isCorrect: answer.isCorrect, questionId: questionResult.get('id')})
-                                                    .then(answerResult => {
-                                                                resolve__();
-                                                    });
-                                            });
-                                        }))
-                                            .then(() => resolve_({}));
-                                    });
-                            });
-                        }))
-                            .then(() => resolve({}));
+                        resolve({});
                     });
             });
     });
@@ -57,5 +39,5 @@ module.exports = {
     getAll,
     getAllByTopicId,
     create,
-    remove,
+    remove
 };
