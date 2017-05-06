@@ -11,5 +11,6 @@ router.use('/tests', require('./tests'));
 router.use('/words', require('./words'));
 router.use('/wordTopics', require('./wordTopics'));
 router.use('/testResults', require('./testResults'));
+router.use('/testQuestions', require('./testQuestions'));
 
 module.exports = router;
