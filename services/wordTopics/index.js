@@ -4,6 +4,10 @@ function getAll() {
     return WordTopic.findAll();
 }
 
+function getOne(topicId) {
+    return WordTopic.findOne({ where: { id: topicId } });
+}
+
 function create(wordTopic) {
     return new Promise((resolve, reject) => {
         WordTopic.findOrCreate({where: {name: wordTopic.name}})
@@ -31,5 +35,6 @@ function remove(id) {
 module.exports = {
     getAll,
     create,
-    remove
+    remove,
+    getOne,
 }

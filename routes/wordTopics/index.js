@@ -42,4 +42,19 @@ router.delete('/:id', (req, res, next) => {
         });
 });
 
+router.get('/:id', (req, res, next) => {
+    wordTopicsService.getOne(req.params.id)
+        .then(data => {
+            res.json({
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
+        });
+});
+
 module.exports = router;

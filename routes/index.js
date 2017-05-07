@@ -6,11 +6,11 @@ router.use(authenticate());
 
 router.use('/auth', require('./auth'));
 router.use('/users', require('./users'));
-router.use('/testTopics', require('./testTopics'));
+router.use('/test-topics', require('./testTopics'));
 router.use('/tests', require('./tests'));
 router.use('/words', require('./words'));
-router.use('/wordTopics', require('./wordTopics'));
-router.use('/testResults', require('./testResults'));
-router.use('/testQuestions', require('./testQuestions'));
+router.use('/word-topics', require('./wordTopics'));
+router.use('/test-results', require('./testResults'));
+router.use('/test-questions', require('./testQuestions'));
 
 module.exports = router;
