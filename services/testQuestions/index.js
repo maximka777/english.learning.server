@@ -13,7 +13,11 @@ function create(question) {
                             });
                     });
                 }))
-                    .then(answerResults => resolve({ question: questionResult, answers: answerResults}));
+                    .then(answerResults => {
+                        const result = Object.assign({}, questionResult.dataValues);
+                        result.answers = answersResults;
+                        resolve(result);
+                    });
             });
     });
 }
