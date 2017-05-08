@@ -15,7 +15,7 @@ function create(wordTopic) {
                 if(!created) {
                     reject({ status: 400, message: 'Word topic is exist'});
                 }
-                resolve(topic);
+                resolve(topic.get());
             });
     });
 }

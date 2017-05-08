@@ -9,11 +9,15 @@ function create(question) {
                     return new Promise((resolve_, reject_) => {
                         QuestionAnswer.create({answerText: answer.answerText, isCorrect: answer.isCorrect, questionId: questionResult.get('id')})
                             .then(answerResult => {
-                                resolve_();
+                                resolve_(answerResult);
                             });
                     });
                 }))
-                    .then(() => resolve({}));
+                    .then(answerResults => {
+                        const result = Object.assign({}, questionResult.dataValues);
+                        result.answers = answersResults;
+                        resolve(result);
+                    });
             });
     });
 }

@@ -4,7 +4,7 @@ function create(testResult) {
     return new Promise((resolve, reject) => {
         TestResult.create(testResult)
             .then(testResultData => {
-                resolve(testResultData)
+                resolve(testResultData.get())
             })
             .catch(err => {
                 reject({status: 500, message: 'Error occurred'});

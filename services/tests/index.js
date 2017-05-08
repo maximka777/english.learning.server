@@ -1,12 +1,19 @@
 const Test = require('../../database/models/tests');
 const TestTopic = require('../../database/models/testTopics');
+const TestQuestion = require('../../database/models/testQuestions');
+const QuestionAnswer = require('../../database/models/questionAnswers');
 
 function getAll() {
     return Test.findAll()
 }
 
 function getAllByTopicId(topicId) {
-    return Test.findAll({ where: { topicId: topicId } });
+    return Test.findAll({
+        where: { topicId: topicId },
+        include: [ { model: TestQuestion,
+            include: [{ model: QuestionAnswer}]
+        }]
+    });
 }
 
 function getAnswersFromQuestion(question) {
@@ -44,7 +51,7 @@ function create(test) {
                 TestTopic.findOne({where: {id: test.topicId}})
                     .then(topicResult => {
                         if(!topicResult) return reject({ status: 400, message: 'Topic doesn\'t exist' });
-                        resolve({});
+                        resolve(testResult.get());
                     });
             });
     });
