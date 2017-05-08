@@ -59,7 +59,7 @@ function login(username, password) {
                         tokenData.set('isValid', true);
                         tokenData.save()
                             .then(() => {
-                                resolve(jwtToken);
+                                resolve({token: jwtToken, user: user});
                             });
                     });
             });

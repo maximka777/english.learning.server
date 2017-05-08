@@ -51,7 +51,7 @@ function create(test) {
                 TestTopic.findOne({where: {id: test.topicId}})
                     .then(topicResult => {
                         if(!topicResult) return reject({ status: 400, message: 'Topic doesn\'t exist' });
-                        resolve({});
+                        resolve(testResult.get());
                     });
             });
     });

@@ -12,7 +12,7 @@ function create(word) {
     return new Promise((resolve, reject) => {
         Word.create(word)
             .then(wordData => {
-                resolve(wordData);
+                resolve(wordData.get());
             })
             .catch(() => {
                 reject({status: 400, message: "Error occurred"});
