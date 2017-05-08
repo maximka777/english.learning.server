@@ -15,7 +15,7 @@ function create(question) {
                 }))
                     .then(answerResults => {
                         const result = Object.assign({}, questionResult.dataValues);
-                        result.answers = answersResults;
+                        result.answers = answerResults;
                         resolve(result);
                     });
             });
