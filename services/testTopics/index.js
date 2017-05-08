@@ -1,7 +1,11 @@
 const TestTopic = require('../../database/models/testTopics');
 
 function getAll() {
-    return TestTopic.findAll()
+    return TestTopic.findAll();
+}
+
+function getOne(topicId) {
+    return TestTopic.findOne({ where: { id: topicId } });
 }
 
 function create(topic) {
@@ -30,4 +34,5 @@ module.exports = {
     getAll,
     create,
     remove,
+    getOne,
 };

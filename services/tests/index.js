@@ -6,7 +6,34 @@ function getAll() {
 }
 
 function getAllByTopicId(topicId) {
-    return Test.find({ where: { topicId } });
+    return Test.findAll({ where: { topicId: topicId } });
+}
+
+function getAnswersFromQuestion(question) {
+    return question.getAnswers();
+}
+
+function getOne(testId) {
+    return new Promise((resolve, reject) => {
+        Test.find({where: {id: testId}})
+            .then(test => {
+                test.getQuestions()
+                    .then(questions => {
+                        const result = Object.assign({}, test.dataValues);
+                        const decoratedQuestions = new Array(questions.length);
+                        Promise.all(questions.map(getAnswersFromQuestion))
+                            .then(answers => {
+                                for(let i = 0; i < questions.length; i++) {
+                                    decoratedQuestions[i] = questions[i].dataValues;
+                                    decoratedQuestions[i].answers = answers[i];
+                                }
+                                result.questions = decoratedQuestions;
+                                resolve(result);
+                            });
+
+                    });
+            });
+    });
 }
 
 function create(test) {
@@ -38,6 +65,7 @@ function remove(id) {
 module.exports = {
     getAll,
     getAllByTopicId,
+    getOne,
     create,
     remove
 };

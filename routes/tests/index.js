@@ -12,8 +12,17 @@ router.get('/', (req, res, next) => {
         });
 });
 
-router.get('/:topicId', (req, res, next) => {
+router.get('/theme/:topicId', (req, res, next) => {
     testsService.getAllByTopicId(req.params.topicId)
+        .then(data => {
+            res.json({
+                data: data
+            });
+        });
+});
+
+router.get('/:testId', (req, res, next) => {
+    testsService.getOne(req.params.testId)
         .then(data => {
             res.json({
                 data: data

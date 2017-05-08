@@ -18,6 +18,21 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.get('/:topicId', (req, res, next) => {
+    testTopicsService.getOne(req.params.topicId)
+        .then(data => {
+            res.json({
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
+        });
+});
+
 router.post('/', (req, res, next) => {
     testTopicsService.create(req.body)
         .then(data => {
