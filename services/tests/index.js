@@ -21,25 +21,11 @@ function getAnswersFromQuestion(question) {
 }
 
 function getOne(testId) {
-    return new Promise((resolve, reject) => {
-        Test.find({where: {id: testId}})
-            .then(test => {
-                test.getQuestions()
-                    .then(questions => {
-                        const result = Object.assign({}, test.dataValues);
-                        const decoratedQuestions = new Array(questions.length);
-                        Promise.all(questions.map(getAnswersFromQuestion))
-                            .then(answers => {
-                                for(let i = 0; i < questions.length; i++) {
-                                    decoratedQuestions[i] = questions[i].dataValues;
-                                    decoratedQuestions[i].answers = answers[i];
-                                }
-                                result.questions = decoratedQuestions;
-                                resolve(result);
-                            });
-
-                    });
-            });
+    Test.find({
+        where: {id: testId},
+        include: [{ model: TestQuestion,
+            include: [{model: QuestionAnswer}]
+        }]
     });
 }
 
