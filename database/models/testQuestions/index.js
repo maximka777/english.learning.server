@@ -23,6 +23,6 @@ const TestQuestion = sequelize.define('test_question', {
     updatedAt: false,
 });
 
-TestQuestion.hasMany(QuestionAnswer, { foreignKey: 'question_id', as: 'Answers' });
+TestQuestion.hasMany(QuestionAnswer, { foreignKey: 'question_id', as: 'answers' });
 
 module.exports = TestQuestion;
