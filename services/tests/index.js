@@ -10,8 +10,13 @@ function getAll() {
 function getAllByTopicId(topicId) {
     return Test.findAll({
         where: { topicId: topicId },
-        include: [ { model: TestQuestion,
-            include: [{ model: QuestionAnswer}]
+        include: [ {
+            model: TestQuestion,
+            as: 'questions',
+            include: [{
+                model: QuestionAnswer,
+                as: 'answers'
+            }]
         }]
     });
 }
@@ -21,10 +26,10 @@ function getAnswersFromQuestion(question) {
 }
 
 function getOne(testId) {
-    Test.find({
+    return Test.find({
         where: {id: testId},
-        include: [{ model: TestQuestion,
-            include: [{model: QuestionAnswer}]
+        include: [{ model: TestQuestion, as: 'questions',
+            include: [{model: QuestionAnswer, as: 'answers'}]
         }]
     });
 }
