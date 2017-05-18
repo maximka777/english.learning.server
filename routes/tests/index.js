@@ -9,6 +9,12 @@ router.get('/', (req, res, next) => {
             res.json({
                 data: data
             });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
         });
 });
 
@@ -26,6 +32,12 @@ router.get('/theme/:topicId', (req, res, next) => {
                 data: data
             });
         })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
+        });
 });
 
 router.get('/:testId', (req, res, next) => {
@@ -40,6 +52,12 @@ router.get('/:testId', (req, res, next) => {
         .then(data => {
             res.json({
                 data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
             });
         });
 });

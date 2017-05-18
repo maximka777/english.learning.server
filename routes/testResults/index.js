@@ -16,6 +16,12 @@ router.get('/:userId', (req, res, next) => {
             res.json({
                 data: data
             });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
         });
 });
 
@@ -33,7 +39,13 @@ router.get('/:userId/:testId', (req, res, next) => {
            res.json({
                data: data
            });
-       });
+       })
+       .catch(err => {
+           res.status(err.status);
+           res.json({
+               data: err.message
+           });
+       });;
 });
 
 router.post('/', (req, res, next) => {

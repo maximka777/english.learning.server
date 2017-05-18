@@ -9,6 +9,12 @@ router.get('/', (req, res, next) => {
             res.json({
                 data: data
             });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            });
         });
 });
 
@@ -28,7 +34,12 @@ router.post('/', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-    wordTopicsService.remove(req.params.id)
+    const id = req.params.id;
+    if(!id) {
+        res.status(400);
+        return res.json('Incorrect word topic');
+    }
+    wordTopicsService.remove(id)
         .then(data => {
             res.json({
                 data: data
@@ -43,7 +54,12 @@ router.delete('/:id', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    wordTopicsService.getOne(req.params.id)
+    const id = req.params.id;
+    if(!id) {
+        res.status(400);
+        return res.json('Incorrect word topic');
+    }
+    wordTopicsService.getOne(id)
         .then(data => {
             res.json({
                 data: data

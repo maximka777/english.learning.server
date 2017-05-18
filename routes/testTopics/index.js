@@ -19,7 +19,14 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:topicId', (req, res, next) => {
-    testTopicsService.getOne(req.params.topicId)
+    const topicId = req.params.topicId || null;
+    if(!topicId) {
+        res.status(400);
+        return res.json({
+           data: 'Incorrect test topic'
+        });
+    }
+    testTopicsService.getOne(topicId)
         .then(data => {
             res.json({
                 data: data
@@ -50,6 +57,12 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
+    if(!id) {
+        res.status(400);
+        return res.json({
+            data: 'Incorrect topic'
+        })
+    }
     testTopicsService.remove(id)
         .then(data => {
             res.json({
