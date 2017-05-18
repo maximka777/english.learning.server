@@ -1,15 +1,19 @@
 const TestResult = require('../../database/models/testResults');
 
 function create(testResult) {
-    const testId = testResult.testId || null;
-    const userId = testResult.userId || null;
-    const passDate = testResult.passDate;
-    const correctCount = testResult.correctCount;
+    const testId = testResult ? testResult.testId || null : null;
+    const userId = testResult ? testResult.userId || null : null;
+    const passDate = testResult ? testResult.passDate || null : null;
+    const correctCount = testResult ? testResult.correctCount || null : null;
+    const totalCount = testResult ? testResult.totalCount || null : null;
     if(!(testId && testId > 0 && userId && userId > 0 && passDate && correctCount && correctCount > -1)) {
         return new Promise.reject({
             status: 400,
             message: 'Incorrect test result data'
         })
+    }
+    if(totalCount <= 0 || (correctCount > totalCount) ) {
+        return new Promise.reject({ status: 400, message: 'Incorrect test result data'})
     }
     return new Promise((resolve, reject) => {
         TestResult.create(testResult)

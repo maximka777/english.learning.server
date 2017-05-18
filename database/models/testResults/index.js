@@ -13,6 +13,10 @@ const TestResult = sequelize.define('test_result', {
         type: Sequelize.INTEGER,
         field: 'correct_count'
     },
+    totalCount: {
+        type: Sequelize.INTEGER,
+        field: 'total_count'
+    },
     passDate: {
         type: Sequelize.BIGINT,
         field: 'pass_date'
