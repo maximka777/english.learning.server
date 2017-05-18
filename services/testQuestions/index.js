@@ -5,7 +5,7 @@ function create(question) {
     const questionText = question.questionText || null;
     const testId  = question.testId || null;
     if(!(testId && testId > 0 && questionText && questionText.length)) {
-        return new Promise.reject({
+        return Promise.reject({
             status: 400,
             message: 'Incorrect question data'
         });
@@ -32,7 +32,7 @@ function create(question) {
 
 function getAllByTestId(testId) {
     return TestQuestion.find({where: {testId}})
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 function remove(id) {
@@ -44,7 +44,7 @@ function remove(id) {
                         resolve({});
                     });
             })
-            .catch(() => new Promise.reject({ status: 500}));
+            .catch(() => Promise.reject({ status: 500}));
     });
 }
 

@@ -5,14 +5,14 @@ const jwt = require('jsonwebtoken');
 
 function getAll() {
     return User.findAll()
-        .catch(() => new Promise.reject({ status: 500}));
+        .catch(() => Promise.reject({ status: 500}));
 }
 
 function create(user) {
     const username = user? user.username || null : null;
     const password = user? user.password || null : null;
     if(!(username && password)) {
-        return new Promise.reject({ status: 400, message: 'Incorrect user data'})
+        return Promise.reject({ status: 400, message: 'Incorrect user data'})
     }
     return new Promise((resolve, reject) => {
         User.findOne({ where: { username } })

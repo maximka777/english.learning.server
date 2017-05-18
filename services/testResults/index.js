@@ -7,13 +7,13 @@ function create(testResult) {
     const correctCount = testResult ? testResult.correctCount || null : null;
     const totalCount = testResult ? testResult.totalCount || null : null;
     if(!(testId && testId > 0 && userId && userId > 0 && passDate && correctCount && correctCount > -1)) {
-        return new Promise.reject({
+        return Promise.reject({
             status: 400,
             message: 'Incorrect test result data'
         })
     }
     if(totalCount <= 0 || (correctCount > totalCount) ) {
-        return new Promise.reject({ status: 400, message: 'Incorrect test result data'})
+        return Promise.reject({ status: 400, message: 'Incorrect test result data'})
     }
     return new Promise((resolve, reject) => {
         TestResult.create(testResult)
@@ -28,12 +28,12 @@ function create(testResult) {
 
 function getAllByUserId(userId) {
     return TestResult.findAll({where: {userId: userId}})
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 function getAllByUserIdTestId(userId, testId) {
     return TestResult.findAll({where: {userId: userId, testId: testId}})
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 module.exports = {

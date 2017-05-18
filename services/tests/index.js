@@ -5,7 +5,7 @@ const QuestionAnswer = require('../../database/models/questionAnswers');
 
 function getAll() {
     return Test.findAll()
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 function getAllByTopicId(topicId) {
@@ -20,7 +20,7 @@ function getAllByTopicId(topicId) {
             }]
         }]
     })
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 function getAnswersFromQuestion(question) {
@@ -34,7 +34,7 @@ function getOne(testId) {
             include: [{model: QuestionAnswer, as: 'answers'}]
         }]
     })
-        .catch(() => new Promise.reject({ status: 500 }));
+        .catch(() => Promise.reject({ status: 500 }));
 }
 
 function create(test) {
@@ -60,7 +60,7 @@ function remove(id) {
                         resolve({});
                     });
             })
-            .catch(() => new Promise.reject({ status: 500 }));
+            .catch(() => Promise.reject({ status: 500 }));
     });
 }
 
