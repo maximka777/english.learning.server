@@ -1,16 +1,22 @@
 const WordTopic = require('../../database/models/wordTopics');
 
 function getAll() {
-    return WordTopic.findAll();
+    return WordTopic.findAll()
+        .catch(() => new Promise.reject({ status: 500 }));
 }
 
 function getOne(topicId) {
-    return WordTopic.findOne({ where: { id: topicId } });
+    return WordTopic.findOne({ where: { id: topicId } })
+        .catch(() => new Promise.reject({ status: 500 }));
 }
 
 function create(wordTopic) {
+    const name = wordTopic ? wordTopic.name : null;
+    if(!name) {
+        return new Promise.reject({ status: 400, message: 'Incorrect word topic data'});
+    }
     return new Promise((resolve, reject) => {
-        WordTopic.findOrCreate({where: {name: wordTopic.name}})
+        WordTopic.findOrCreate({where: { name }})
             .spread((topic, created) => {
                 if(!created) {
                     reject({ status: 400, message: 'Word topic is exist'});
@@ -28,7 +34,8 @@ function remove(id) {
                     .then(() => {
                         resolve({});
                     });
-            });
+            })
+            .catch(() => reject({ status: 500 }));
     });
 }
 

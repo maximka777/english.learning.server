@@ -1,14 +1,22 @@
 const Word = require('../../database/models/words');
 
 function getAll(){
-    return Word.findAll();
+    return Word.findAll()
+        .catch(() => new Promise.reject({ status: 500 }));
 }
 
 function getAllByTopicId(topicId) {
-    return Word.findAll({where: {topicId: topicId}});
+    return Word.findAll({where: {topicId: topicId}})
+        .catch(() => new Promise.reject({ status: 500 }));
 }
 
 function create(word) {
+    const english = word && word.english && word.english.length ? word.english : null;
+    const russian = word && word.russian && word.russian.length ? word.russian : null;
+    const topicId = word && word.topicId ? word.topicId : null;
+    if(!(english && russian && topicId)) {
+        return new Promise.reject({ status: 400, message: 'Incorrect word data'});
+    }
     return new Promise((resolve, reject) => {
         Word.create(word)
             .then(wordData => {
@@ -28,7 +36,8 @@ function remove(id) {
                     .then(() => {
                         resolve({});
                     });
-            });
+            })
+            .catch(() => reject({ status: 500 }));
     });
 }
 

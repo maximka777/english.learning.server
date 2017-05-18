@@ -2,6 +2,14 @@ const TestQuestion = require('../../database/models/testQuestions');
 const QuestionAnswer = require('../../database/models/questionAnswers');
 
 function create(question) {
+    const questionText = question.questionText || null;
+    const testId  = question.testId || null;
+    if(!(testId && testId > 0 && questionText && questionText.length)) {
+        return new Promise.reject({
+            status: 400,
+            message: 'Incorrect question data'
+        });
+    }
     return new Promise((resolve, reject) => {
         TestQuestion.create({questionText: question.questionText, testId: question.testId})
             .then(questionResult => {
@@ -23,7 +31,8 @@ function create(question) {
 }
 
 function getAllByTestId(testId) {
-    return TestQuestion.find({where: {testId}});
+    return TestQuestion.find({where: {testId}})
+        .catch(() => new Promise.reject({ status: 500 }));
 }
 
 function remove(id) {
@@ -34,7 +43,8 @@ function remove(id) {
                     .then(() => {
                         resolve({});
                     });
-            });
+            })
+            .catch(() => new Promise.reject({ status: 500}));
     });
 }
 

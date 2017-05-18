@@ -4,10 +4,23 @@ const router = express.Router();
 const testQuestionsService = require('../../services/testQuestions');
 
 router.get('/:testId', (req, res, next) => {
-    testQuestionsService.getAllByTopicId(req.params.testId)
+    const testId = req.params.testId || null;
+    if(!(testId && testId > 0)) {
+        res.status(400);
+        return res.json({
+            data: 'Incorrect test'
+        })
+    }
+    testQuestionsService.getAllByTestId(testId)
         .then(data => {
             res.json({
                 data: data
+            });
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
             });
         });
 });
@@ -28,7 +41,14 @@ router.post('/', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-    testQuestionsService.remove(req.params.id)
+    const questionId = req.params.id || null;
+    if(!(questionId && (questionId > 0))) {
+        res.status(400);
+        return res.json({
+            data: 'Incorrect question'
+        })
+    }
+    testQuestionsService.remove(questionId)
         .then(data => {
             res.json({
                 data: data
