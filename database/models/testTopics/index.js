@@ -21,6 +21,9 @@ const TestTopic = sequelize.define('test_topic', {
             min: 1,
         },
     },
+    theory: {
+        type: Sequelize.STRING
+    }
 }, {
     freezeTableName: true,
     createdAt: false,
