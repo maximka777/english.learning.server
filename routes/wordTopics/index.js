@@ -37,7 +37,9 @@ router.delete('/:id', (req, res, next) => {
     const id = req.params.id;
     if(!id) {
         res.status(400);
-        return res.json('Incorrect word topic');
+        return res.json({
+            data: 'Incorrect word topic'
+        });
     }
     wordTopicsService.remove(id)
         .then(data => {
@@ -57,7 +59,9 @@ router.get('/:id', (req, res, next) => {
     const id = req.params.id;
     if(!id) {
         res.status(400);
-        return res.json('Incorrect word topic');
+        return res.json({
+            data: 'Incorrect word topic'
+        });
     }
     wordTopicsService.getOne(id)
         .then(data => {

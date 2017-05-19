@@ -16,7 +16,9 @@ router.get('/:topicId', (req, res, next) => {
    const topicId = req.params.topicId || null;
    if(!topicId) {
        res.status(400);
-       return res.json('Incorrect topic');
+       return res.json({
+           data: 'Incorrect topic'
+       });
    }
    wordsService.getAllByTopicId(topicId)
        .then(data => {
@@ -45,7 +47,9 @@ router.delete('/:id', (req, res, next) => {
     const topicId = req.params.id || null;
     if(!topicId) {
         res.status(400);
-        return res.json('Incorrect topic');
+        return res.json({
+            data: 'Incorrect topic'
+        });
     }
     wordsService.remove(topicId)
         .then(data => {
