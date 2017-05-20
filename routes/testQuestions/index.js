@@ -5,7 +5,7 @@ const testQuestionsService = require('../../services/testQuestions');
 
 router.get('/:testId', (req, res, next) => {
     const testId = req.params.testId || null;
-    if(!(testId && testId > 0)) {
+    if(!testId) {
         res.status(400);
         return res.json({
             data: 'Incorrect test'
@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
     const questionId = req.params.id || null;
-    if(!(questionId && (questionId > 0))) {
+    if(!questionId) {
         res.status(400);
         return res.json({
             data: 'Incorrect question'
