@@ -38,9 +38,22 @@ function remove(id) {
     });
 }
 
+function updateTheory(id, theory) {
+    return new Promise((resolve, reject) => {
+        TestTopic.update({ theory }, { where: { id } })
+            .then(result => {
+                TestTopic.findOne({ where: { id } })
+                    .then( topic => resolve(topic))
+                    .catch( err => reject({ status: 500 }));
+            })
+            .catch(err => reject({ status: 500 }))
+    })
+}
+
 module.exports = {
     getAll,
     create,
     remove,
     getOne,
+    updateTheory
 };

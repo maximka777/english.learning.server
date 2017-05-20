@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/theme/:topicId', (req, res, next) => {
     const topicId = req.params.topicId || null;
-    if(!(topicId && topicId > 0)) {
+    if(!topicId) {
         res.status(400);
         return res.json({
             data: 'Incorrect topic'
@@ -42,7 +42,7 @@ router.get('/theme/:topicId', (req, res, next) => {
 
 router.get('/:testId', (req, res, next) => {
     const testId = req.params.testId || null;
-    if(!(testId && testId > 0)) {
+    if(!testId) {
         res.status(400);
         return res.json({
             data: 'Incorrect test'
@@ -79,7 +79,7 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:id', (req, res, next) => {
     const testId = req.pparams.id || null;
-    if(!(testId && (testId > 0))) {
+    if(!testId) {
         res.status(400);
         return res.json({
             data: 'Incorrect test'

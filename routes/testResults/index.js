@@ -5,7 +5,7 @@ const testResultsService = require('../../services/testResults');
 
 router.get('/:userId', (req, res, next) => {
     const userId = req.params.userId || null;
-    if(!(userId && (userId > 0))) {
+    if(!userId) {
         res.status(400);
         return res.json({
             data: 'Incorrect user'
@@ -28,7 +28,7 @@ router.get('/:userId', (req, res, next) => {
 router.get('/:userId/:testId', (req, res, next) => {
    const userId = req.params.userId || null;
    const testId = req.params.testId || null;
-   if(!(userId && (userId > 0) && testId && (testId > 0))){
+   if(!userId || !testId){
        res.status(400);
        return res.json({
            data: 'Incorrect request data'

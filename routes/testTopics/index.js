@@ -77,4 +77,27 @@ router.delete('/:id', (req, res, next) => {
         });
 });
 
+router.put('/:id/theory', (req, res, next) => {
+    const id = req.params.id || null;
+    const theory = req.body.theory || null;
+    if(!id || !theory) {
+        res.status(400);
+        return res.json({
+            data: 'Incorrect test topic data'
+        });
+    }
+    testTopicsService.updateTheory(id, theory)
+        .then(data => {
+            res.json({
+                data: data
+            })
+        })
+        .catch(err => {
+            res.status(err.status);
+            res.json({
+                data: err.message
+            })
+        })
+});
+
 module.exports = router;
