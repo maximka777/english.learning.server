@@ -1,4 +1,5 @@
 const TestResult = require('../../database/models/testResults');
+const Test = require('../../database/models/tests');
 
 function create(testResult) {
     const testId = testResult ? testResult.testId || null : null;
@@ -27,7 +28,13 @@ function create(testResult) {
 }
 
 function getAllByUserId(userId) {
-    return TestResult.findAll({where: {userId: userId}})
+    return TestResult.findAll({
+        where: {userId: userId},
+        include: [ {
+            model: Test,
+            as: 'test'
+        }]
+    })
         .catch(() => Promise.reject({ status: 500 }));
 }
 
