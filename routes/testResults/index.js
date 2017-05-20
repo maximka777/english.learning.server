@@ -28,7 +28,7 @@ router.get('/:userId', (req, res, next) => {
 router.get('/:userId/:testId', (req, res, next) => {
    const userId = req.params.userId || null;
    const testId = req.params.testId || null;
-   if(!userId && !testId){
+   if(!userId || !testId){
        res.status(400);
        return res.json({
            data: 'Incorrect request data'
