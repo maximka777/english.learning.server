@@ -78,7 +78,7 @@ router.post('/', (req, res, next) => {
 });
 
 router.delete('/:id', (req, res, next) => {
-    const testId = req.pparams.id || null;
+    const testId = req.params.id || null;
     if(!testId) {
         res.status(400);
         return res.json({
